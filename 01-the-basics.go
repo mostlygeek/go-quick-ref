@@ -115,7 +115,6 @@ func main() {
     // --------------------
     // Math http://golang.org/pkg/math
     // --------------------
-
     _ = 1 + (4 * 9 / 8 * (13 % 5))
     _ = math.Pow(5,2) * math.Pi
     _ = math.Floor(10.2)
@@ -137,7 +136,7 @@ func main() {
     _ = (len(st) != utf8.RuneCountInString(st)) // utf8!
 
     // --------------------
-    // Random http://golang.org/pkg/math/rand/
+    // Random Numbers http://golang.org/pkg/math/rand/
     // --------------------
     rN := 5
     _ = rand.Intn(rN)  // [0, rN)
@@ -145,31 +144,6 @@ func main() {
     _ = rand.Int63()   // [0, 2^63)
     _ = rand.Float32() // [0, 1.0)
     _ = rand.Float64() // [0, 1.0)
-
-    // --------------------
-    // SLICES http://blog.golang.org/go-slices-usage-and-internals
-    // --------------------
-    sl0 := []int{0,1,2}         // notice empty []
-    sl1 := make([]int, 3, 5)    // 5 = capacity
-    _ = len(sl1) // 3
-    _ = cap(sl1) // 5
-
-    // slice indexes
-    _ = sl0[0:]    // [0 1 2]
-    _ = sl0[0:3]   // [0 1 2]
-    _ = sl0[0:2]   // [0 1]
-    _ = sl0[0:1]   // [0]
-    _ = sl0[:]     // [0 1 2] indexes are optional
-    _ = sl0[:3]    // [0 1 2]
-    _ = sl0[:2]    // [0 1]
-    _ = sl0[:1]    // [0]
-    _ = sl0[1:]    // [1 2]
-    _ = sl0[1:3]   // [1 2]
-
-    // growing slices
-    sl3 := []int{0,1,2}
-    sl4 := append(sl3, 4, 5, 6)
-    fmt.Println(sl4)
 
     fmt.Print("Done\n")
 }
