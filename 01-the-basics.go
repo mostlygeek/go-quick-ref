@@ -22,6 +22,8 @@ func init() { // I'm always called before main()
 func main() {
     // --------------------
     // http://blog.golang.org/gos-declaration-syntax
+    //
+    // types: https://golang.org/ref/spec#Types
     // --------------------
     var a1 int; /* <- note ; */ a1 = 10
     var a2 int = 5

@@ -18,6 +18,7 @@ type Rectangle struct {
     name string
 
     // anonymous fields
+    // ref: http://golangtutorials.blogspot.ca/2011/06/anonymous-fields-in-structs-like-object.html
     MyString
     InnerStruct
 }
@@ -69,5 +70,13 @@ func main() {
 
     fmt.Println(r2)         // {13 9  hi {11 100}}}
     fmt.Println(r2.Area())  // 117
+
+    // another way of creating rectangle with passing
+    // of variables w/ correct types
+    var v1 MyString = "boom"
+    v2 := InnerStruct{11, 1231}
+    r3:=Rectangle{13, 9, "name", v1, v2}
+    fmt.Println(r3)             // {13 9 name boom {11 1231}}}
+    fmt.Println(r3.Area())      // 117
 
 }
