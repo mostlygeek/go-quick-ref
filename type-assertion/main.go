@@ -1,3 +1,7 @@
+// example of using type assertions in go
+// ref: https://golang.org/ref/spec#Type_assertions
+// ref: http://blog.denevell.org/golang-interface-type-assertions-switch.html
+
 package main
 
 import (
@@ -20,8 +24,6 @@ func TakesSomething(label string, v interface{}) string {
 	}
 }
 
-// example of dynamic typing in go
-// ref: http://blog.denevell.org/golang-interface-type-assertions-switch.html
 func main() {
 
 	fmt.Println(TakesSomething("1", 1235))
