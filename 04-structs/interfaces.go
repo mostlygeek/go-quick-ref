@@ -7,15 +7,20 @@ import (
 	"fmt"
 )
 
+type Toggleable interface {
+	Enabled() bool
+}
+
 type Base struct {
-	name string
+	enabled bool
+	name    string
 }
 
-func (b *Base) Name() string {
-	return b.name
-}
+func (b *Base) Name() string { return b.name }
 
-func (b *Base) PName() string { return b.name }
+// implement the Toggleable interface on base
+// it will also work on Child!
+func (b Base) Enabled() bool { return b.enabled }
 
 type Child struct {
 	Base
@@ -24,13 +29,21 @@ type Child struct {
 
 func (c Child) Age() int { return c.age }
 
+func IsEnabled(t Toggleable) string {
+	if t.Enabled() {
+		return "yes"
+	}
+
+	return "no"
+}
+
 func main() {
-	b := Base{"hello"}
-	fmt.Println(b.Name())
+	b := Base{false, "hello"}
+	fmt.Printf("%v is enabled? %v\n", b.Name(), IsEnabled(b))
 
 	//c.Name() works because it includes Base as an
 	//anonymous field
 
-	c := Child{Base: Base{"Child"}, age: 10}
-	fmt.Printf("%v:%v\n", c.PName(), c.Age())
+	c := Child{Base: Base{true, "Child"}, age: 10}
+	fmt.Printf("Child %v:%v is enabled? %v\n", c.Name(), c.Age(), IsEnabled(c))
 }
