@@ -53,6 +53,7 @@ func (r *Rectangle) SetNameAsPointer(v string) {
   - the method that gets a copy cannot modify the original's values
 
  see: http://stackoverflow.com/a/9958532
+ also: http://golang.org/doc/faq#methods_on_values_or_pointers
 */
 
 func (r *Rectangle) Area() (area int) {

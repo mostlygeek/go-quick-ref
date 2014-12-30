@@ -11,9 +11,11 @@ type Base struct {
 	name string
 }
 
-func (b Base) Name() string {
+func (b *Base) Name() string {
 	return b.name
 }
+
+func (b *Base) PName() string { return b.name }
 
 type Child struct {
 	Base
@@ -30,5 +32,5 @@ func main() {
 	//anonymous field
 
 	c := Child{Base: Base{"Child"}, age: 10}
-	fmt.Printf("%v:%v\n", c.Name(), c.Age())
+	fmt.Printf("%v:%v\n", c.PName(), c.Age())
 }
