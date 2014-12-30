@@ -8,9 +8,11 @@ import (
 	"fmt"
 )
 
+type someType interface{}
+
 // takes any sort of value for `v` and figures out what
 // type it is and creates the appropriate output
-func TakesSomething(label string, v interface{}) string {
+func TakesSomething(label string, v someType) string {
 
 	switch v.(type) {
 	case string:
