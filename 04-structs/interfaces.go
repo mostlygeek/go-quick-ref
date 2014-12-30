@@ -1,7 +1,8 @@
 package main
 
 // Demo of Base > Child relationship with
-// function from Base being called from a Child
+// methods from Base being called from a Child
+// as well as interactions with an interface
 
 import (
 	"fmt"
@@ -16,22 +17,15 @@ type Base struct {
 	name    string
 }
 
-func (b *Base) Name() string { return b.name }
+func (b *Base) Name() string           { return b.name }
+func (b Base) Enabled() (bool, string) { return b.enabled, "[Enabled() from Base]" }
 
-// implement the Toggleable interface on base
-// it will also work on Child!
-func (b Base) Enabled() (bool, string) { return b.enabled, "base" }
+type Child struct{ Base }
 
-type Child struct {
-	Base
-	age int
-}
-
-func (c Child) Age() int { return c.age }
-
+// Child2 has its own Enabled() method that hides Base.Enabled()
 type Child2 struct{ Base }
 
-func (c Child2) Enabled() (bool, string) { return c.enabled, "child" }
+func (c Child2) Enabled() (bool, string) { return c.enabled, "[Enabled() from Child2]" }
 
 func IsEnabled(t Toggleable) string {
 	if enabled, msg := t.Enabled(); enabled == true {
@@ -39,7 +33,6 @@ func IsEnabled(t Toggleable) string {
 	} else {
 		return "no, " + msg
 	}
-
 }
 
 func main() {
@@ -49,12 +42,11 @@ func main() {
 	//c.Name() works because it includes Base as an
 	//anonymous field
 
-	c := Child{Base: Base{true, "Child"}, age: 10}
-	fmt.Printf("%v:%v is enabled? %v\n", c.Name(), c.Age(), IsEnabled(c))
+	c := Child{Base{true, "Child"}}
+	fmt.Printf("%v is enabled? %v\n", c.Name(), IsEnabled(c))
 
 	// Child2 has an Enabled() method so that is used instead of the
 	// one in Base like with Child1
-	c2 := Child2{Base: Base{true, "Child2"}}
+	c2 := Child2{Base{true, "Child2"}}
 	fmt.Printf("Child2 %v is enabled? %v\n", c2.Name(), IsEnabled(c2))
-
 }

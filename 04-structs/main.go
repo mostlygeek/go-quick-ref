@@ -61,6 +61,10 @@ func (r *Rectangle) Area() (area int) {
 	return
 }
 
+func NewRectangle(w int, h int) *Rectangle {
+	return &Rectangle{width: w, height: h}
+}
+
 func main() {
 
 	r1 := Rectangle{10, 10, "my rectangle", "val for MyString", InnerStruct{10, 13}}
@@ -85,4 +89,8 @@ func main() {
 	r3 := Rectangle{13, 9, "name", v1, v2}
 	fmt.Println(r3)        // {13 9 name boom {11 1231}}}
 	fmt.Println(r3.Area()) // 117
+
+	r4 := NewRectangle(10, 11)
+	fmt.Printf("Made from a func: Rectangle(%v,%v)\n", r4.width, r4.height)
+
 }
