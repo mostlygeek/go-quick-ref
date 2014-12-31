@@ -6,5 +6,5 @@
     * need to change a value and have it visible to the caller? 
     * big struct, pointer is more efficient
     * consistency: some methods use pointer receivers, the rest should too
-
+* [Laws of Reflection](http://blog.golang.org/laws-of-reflection) - basic(ish) introduction to reflection in go
 
