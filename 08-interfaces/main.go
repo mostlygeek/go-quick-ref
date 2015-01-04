@@ -6,6 +6,7 @@ import (
 
 type StringMaker interface {
 	Make() string
+	Append(string) string
 }
 
 type Something1 struct {
@@ -16,12 +17,19 @@ func (s Something1) Make() string {
 	return fmt.Sprintf("Something1's msg: %v", s.msg)
 }
 
+func (s Something1) Append(a string) string {
+	return fmt.Sprintf("something1.append(), %v%v", s, a)
+}
+
 type Something2 struct {
 	num int
 }
 
 func (s Something2) Make() string {
 	return fmt.Sprintf("Something2's int: %v", s.num)
+}
+func (s Something2) Append(a string) string {
+	return fmt.Sprintf("something2.append(), %v%v", s, a)
 }
 
 func PrintMessage(s StringMaker) {
@@ -44,6 +52,7 @@ func main() {
 
 	for _, s := range somethings {
 		PrintMessage(s)
+		fmt.Println(s.Append("hello"))
 	}
 
 }
